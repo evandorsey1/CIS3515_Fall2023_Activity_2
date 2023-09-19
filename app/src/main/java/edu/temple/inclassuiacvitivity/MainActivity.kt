@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
-import com.google.android.material.navigation.NavigationBarView.OnItemSelectedListener
+import android.widget.AdapterView.OnItemSelectedListener
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,15 +23,25 @@ class MainActivity : AppCompatActivity() {
         spinner.adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, numberArray)
 
 
-//        // Step 3: Change TextView's text size to the number selected in the Spinner */
-//        spinner.onItemSelectedListener = object: OnItemSelectedListener{
-//            override fun onItemSelected(p0: AdapterView): Boolean {
-//                TODO("Not yet implemented")
-//            }
-//
-//
-//
-//        }
+        // Step 3: Change TextView's text size to the number selected in the Spinner */
+        spinner.onItemSelectedListener = object: OnItemSelectedListener {
+
+
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                p0?.run {
+
+                    val choice = getItemAtPosition(p2).toString().toFloat()
+
+                    displayTextView.setTextSize(choice)
+                }
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+            }
+
+
+
+        }
 
     }
 }
